@@ -1,14 +1,14 @@
 import sys
 import itertools
 
-# GREEDY 
-# 821774 score time
-# 2956ms Total Time
+# 821774 score
+# 2513ms TotalTime
+# 146ms Peak Time
 
 """
 To use this file with example testcases, run: 
 
-python greedy_cvrp.py < 1.in > 1.out
+python nearest_neighbor.py < 1.in > 1.out
 
 This reads input from 1.in and prints output to 1.out. 
 """
@@ -28,31 +28,37 @@ def read_input():
 
 def solve_cvrp(n, Q, D, q):
     """TODO: Solve the Capacitated Vehicle Routing Problem and return a list of routes."""
-    unvisited = set(range(1, n))  # Customers (excluding depot)
-    routes = []
-    
+    routes = [[0]]
+
+    unvisited = set(range(1, n))
+
     while unvisited:
-        route = [0]  # Start at the depot
-        load = 0
+        
+        route = [0] # Start a new route from the depot
+        capacity = Q
         current = 0
-        
-        while unvisited:
-            # Find the nearest feasible customer
-            next_customer = min(
-                (c for c in unvisited if load + q[c] <= Q), # Feasible customers
-                key=lambda c: D[current][c],                # Choose the nearest customer
-                default=None                    # If no customer can be served, return None
-            )
+
+        # Find nearest unvisited
+        while unvisited: 
+            nearest = None
+            nearest_dist = float('inf')
+
+            for customer in unvisited: 
+                if q[customer] <= capacity and D[current][customer] < nearest_dist:
+                    nearest = customer
+                    nearest_dist = D[current][customer]
             
-            if next_customer is None:
-                break       # No more feasible customers, return to depot
-            
-            route.append(next_customer)     
-            load += q[next_customer]
-            current = next_customer
-            unvisited.remove(next_customer)
+            # No more customers can fit, return to depot
+            if nearest is None:
+                break
+
+            # Visit nearest customer
+            route.append(nearest)
+            capacity -= q[nearest]
+            unvisited.remove(nearest)
+            current = nearest
         
-        route.append(0)  # Return to depot
+        route.append(0) # return to depot
         routes.append(route)
     
     return routes

@@ -1,6 +1,9 @@
 import sys
 import itertools
 
+# 708067 Score
+# 6417ms Total Time
+
 """
 To use this file with example testcases, run: 
 

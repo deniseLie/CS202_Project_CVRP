@@ -1,6 +1,10 @@
 import sys
 import itertools
 
+# GREEDY 2-OPT
+# 817664 Score
+# 3003ms Total Time
+
 """
 To use this file with example testcases, run: 
 
