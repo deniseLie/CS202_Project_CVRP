@@ -1,17 +1,15 @@
 import sys
 import itertools
+import heapq
 
-# GREEDY 
-# 821774 score time
-# 2956ms Total Time
-
-# 821774 score time
-# 2846ms Total Time
+# GREEDY PRIORITY QUEUE
+# 821774 Score
+# 3102ms Total Time
 
 """
 To use this file with example testcases, run: 
 
-python greedy_cvrp.py < 1.in > 1.out
+python vrp.py < 1.in > 1.out
 
 This reads input from 1.in and prints output to 1.out. 
 """
@@ -30,7 +28,7 @@ def read_input():
     return n, Q, D, q
 
 def solve_cvrp(n, Q, D, q):
-    """TODO: Solve the Capacitated Vehicle Routing Problem and return a list of routes."""
+    """Enhanced greedy heuristic to solve the Capacitated Vehicle Routing Problem."""
     unvisited = set(range(1, n))  # Customers (excluding depot)
     routes = []
     
@@ -39,21 +37,26 @@ def solve_cvrp(n, Q, D, q):
         load = 0
         current = 0
         
-        while unvisited:
-            # Find the nearest feasible customer
-            next_customer = min(
-                (c for c in unvisited if load + q[c] <= Q), # Feasible customers
-                key=lambda c: D[current][c],                # Choose the nearest customer
-                default=None                    # If no customer can be served, return None
-            )
-            
-            if next_customer is None:
-                break       # No more feasible customers, return to depot
-            
-            route.append(next_customer)     
-            load += q[next_customer]
-            current = next_customer
-            unvisited.remove(next_customer)
+        # Use a priority queue to store potential customers based on distance and feasibility
+        pq = []
+        for c in unvisited:
+            if load + q[c] <= Q:  # Only feasible customers
+                heapq.heappush(pq, (D[current][c], c))  # Push customer with distance
+        
+        # Greedily select the nearest customer
+        while pq:
+            _, next_customer = heapq.heappop(pq)
+            if load + q[next_customer] <= Q:
+                route.append(next_customer)
+                load += q[next_customer]
+                current = next_customer
+                unvisited.remove(next_customer)
+                
+                # Rebuild priority queue for remaining unvisited customers
+                pq = []
+                for c in unvisited:
+                    if load + q[c] <= Q:
+                        heapq.heappush(pq, (D[current][c], c))
         
         route.append(0)  # Return to depot
         routes.append(route)
