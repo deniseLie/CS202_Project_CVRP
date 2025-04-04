@@ -5,6 +5,8 @@ import heapq
 # GREEDY PRIORITY QUEUE
 # 821774 Score
 # 3102ms Total Time
+# 180ms Peak Time
+# 20.1 MiB Peak Memory
 
 """
 To use this file with example testcases, run: 
