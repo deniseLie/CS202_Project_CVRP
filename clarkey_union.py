@@ -5,6 +5,7 @@ import itertools
 # 847929 Score
 # 7412ms Total Time
 # 453ms Peak Time
+# 75.5 MiB Peak Memory
 
 class UnionFind:
     def __init__(self, n):

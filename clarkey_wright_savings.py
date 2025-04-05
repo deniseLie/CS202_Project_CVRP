@@ -3,7 +3,8 @@ import itertools
 
 # 708067 Score
 # 6417ms | 6474ms Total Time
-# 404ms | Peak Time
+# 393ms | 404ms | Peak Time
+# 75.5 MiB | 75.6 MiB | Peak Memory
 
 # COMPLEXITY O(n^2 log n)
 
