@@ -3,6 +3,8 @@ import itertools
 
 # 818364 Score
 # 3134ms Total Time
+# 181ms Peak Time
+# 20 MiB Peak Memory
 
 """
 To use this file with example testcases, run: 

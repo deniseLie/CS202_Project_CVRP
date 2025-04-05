@@ -4,6 +4,8 @@ import itertools
 # GREEDY 2-OPT
 # 817664 Score
 # 3003ms Total Time
+# 177ms Peak Time
+# 20 MiB Peak Memory
 
 """
 To use this file with example testcases, run: 

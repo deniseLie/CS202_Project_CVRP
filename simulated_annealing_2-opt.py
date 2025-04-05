@@ -26,6 +26,85 @@ import math
 # 11505ms Peak Time
 # 20.5 MiB Peak Memory
 
+### cooling_rate=0.997, cooler perturb solution + 2-opt 
+# 815164 Score 
+# 227446ms Total Time 
+# 11505ms Peak Time
+# 20.5 MiB Peak Memory
+
+### cooling_rate=0.995, cooler perturb solution + 2-opt 
+# 810809 Score 
+# 226469ms Total Time 
+# 11599ms Peak Time
+# 20.4 MiB Peak Memory
+
+### cooling_rate=0.993, cooler perturb solution + 2-opt 
+# 808211 Score 
+# 228285ms Total Time 
+# 11650ms Peak Time
+# 20.3 MiB Peak Memory
+
+### cooling_rate=0.990, cooler perturb solution + 2-opt 
+# 805129 Score 
+# 227981ms Total Time 
+# 11543ms Peak Time
+# 20.4 MiB Peak Memory
+
+### cooling_rate=0.980, cooler perturb solution + 2-opt 
+# 795592 Score 
+# 226920ms Total Time 
+# 11442ms Peak Time
+# 20.6 MiB Peak Memory
+
+### cooling_rate=0.970, cooler perturb solution + 2-opt 
+# 792883 Score 
+# 226808ms Total Time 
+# 11449ms Peak Time
+# 20.5 MiB Peak Memory
+
+### cooling_rate=0.950, cooler perturb solution + 2-opt 
+# 792226 Score 
+# 227879ms Total Time 
+# 11764ms Peak Time
+# 20.4 MiB Peak Memory
+
+### cooling_rate=0.800, initial_temp = 1000, cooler perturb solution + 2-opt 
+# 789671 Score 
+# 227794ms Total Time 
+# 11597ms Peak Time
+# 20.4 MiB Peak Memory
+
+### cooling_rate=0.600, cooler perturb solution + 2-opt 
+# 789253 Score 
+# 227863ms Total Time 
+# 11656ms Peak Time
+# 20.5 MiB Peak Memory
+
+### cooling_rate=0.450, cooler perturb solution + 2-opt 
+# 788131 Score 
+# 228651ms Total Time 
+# 11605ms Peak Time
+# 20.4 MiB Peak Memory
+
+### cooling_rate=0.100, cooler perturb solution + 2-opt 
+# 791364 Score 
+# 228449ms Total Time 
+# 11588ms Peak Time
+# 20.5 MiB Peak Memory
+
+### cooling_rate=0.800, initial_temp= 500, cooler perturb solution + 2-opt 
+# 791015 Score 
+# 228968ms Total Time 
+# 11620ms Peak Time
+# 20.5 MiB Peak Memory
+
+### cooling_rate=0.800, initial_temp= 1000, max_iter=8000, cooler perturb solution + 2-opt 
+# 779795 Score 
+# 362267ms Total Time 
+# 18451ms Peak Time
+# 20.5 MiB Peak Memory
+
+
 """
 To use this file with example testcases, run: 
 
@@ -157,7 +236,7 @@ def total_distance(routes, D):
     """Calculates total distance for all routes."""
     return sum(calculate_route_distance(route, D) for route in routes)
 
-def solve_cvrp(n, Q, D, q, max_iter=5000, initial_temp=1000, cooling_rate=0.997):
+def solve_cvrp(n, Q, D, q, max_iter=8000, initial_temp=1000, cooling_rate=0.800):
     """Solves the CVRP using simulated annealing."""
     current_solution = initial_solution(n, Q, D, q)
     best_solution = current_solution[:]                     # Set best solution to initial solution
